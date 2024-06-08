@@ -25,7 +25,7 @@ import { CSVLink } from 'react-csv';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AuditLogPage from './AuditLogs';
 import Login from './Login';
-import rbcLogo from './rbc-logo.png'; // Ensure this path is correct
+import rbcLogo from './rbc-logo.png';
 
 // Main App component
 function App() {

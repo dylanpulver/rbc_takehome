@@ -15,10 +15,9 @@ import {
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { CSVLink } from 'react-csv';
 import { Link } from 'react-router-dom';
+import rbcLogo from './rbc-logo.png';
 
-// AuditLogPage component
 const AuditLogPage = () => {
   const [auditLogs, setAuditLogs] = useState([]);
   const [page, setPage] = useState(0);
@@ -27,7 +26,6 @@ const AuditLogPage = () => {
   const [orderBy, setOrderBy] = useState('timestamp');
   const token = localStorage.getItem('token'); // Get the token from local storage
 
-  // Fetch audit logs from the server
   useEffect(() => {
     const fetchAuditLogs = async () => {
       try {
@@ -44,25 +42,21 @@ const AuditLogPage = () => {
     fetchAuditLogs();
   }, [token]);
 
-  // Handle sorting of audit logs
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
 
-  // Handle page change for pagination
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
 
-  // Handle rows per page change for pagination
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  // Sort and paginate audit logs
   const sortedLogs = auditLogs.slice().sort((a, b) => {
     let aValue = a[orderBy];
     let bValue = b[orderBy];
@@ -90,12 +84,13 @@ const AuditLogPage = () => {
         <Button component={Link} to="/" variant="contained" color="primary">
           Back to Search
         </Button>
+        <img src={rbcLogo} alt="RBC Logo" style={{ width: '100px' }} />
       </Box>
       <Typography
-        variant="h3"
+        variant="h4"
         gutterBottom
         align="center"
-        sx={{ fontWeight: 'bold', color: '#0033a0', textAlign: 'center' }}
+        sx={{ color: '#0033a0', fontWeight: 'bold' }}
       >
         Audit Logs
       </Typography>
@@ -196,16 +191,6 @@ const AuditLogPage = () => {
           rowsPerPageOptions={[10, 25, 50, 100]}
         />
       </TableContainer>
-      <Box mt={3} display="flex" justifyContent="center" paddingBottom="20px">
-        <CSVLink
-          data={sortedLogs}
-          filename={`audit_logs_${new Date().toISOString()}.csv`}
-        >
-          <Button variant="contained" color="primary">
-            Download CSV
-          </Button>
-        </CSVLink>
-      </Box>
     </Container>
   );
 };

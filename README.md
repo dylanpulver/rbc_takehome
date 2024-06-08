@@ -86,7 +86,7 @@ The Records Management System is a comprehensive web application designed to eff
 - **Date Pickers**: User-friendly date pickers are provided for selecting start and end dates.
 
 ## MongoDB Endpoint
-The following steps are illustrative, and included to show what the steps for using the mongodb endpoint would look like.
+The following steps are illustrative, and included to show what the steps for using the mongoDB endpoint would look like.
 
 1. Set up a MongoDB server.
 2. Insert your data into the specified MongoDB database and collection.
