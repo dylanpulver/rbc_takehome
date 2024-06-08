@@ -39,16 +39,17 @@ The Records Management System is a comprehensive web application designed to eff
    cd rbc_takehome
    ```
 
-2. **Install Python dependencies:**
+2. **Create & Activate the virtual environment:**
+
+    ```sh
+    python3 -m venv backend/venv
+    source backend/venv/bin/activate
+    ```
+
+3. **Install Python dependencies:**
 
     ```sh
     pip3 install -r backend/requirements.txt
-    ```
-
-3. **Activate the virtual environment:**
-
-    ```sh
-    source backend/venv/bin/activate
     ```
 
 4. **Run the backend server:**
@@ -56,6 +57,8 @@ The Records Management System is a comprehensive web application designed to eff
     ```sh
     uvicorn backend.main:app --reload
     ```
+
+This command will run the backend server in a terminal window. Next, please open a second terminal window to start up the frontend app.
 
 ### Frontend Setup
 
@@ -77,12 +80,11 @@ The Records Management System is a comprehensive web application designed to eff
     npm start
     ```
 
+Upon starting the frontend with `npm start` it will automatically open to `http://localhost:3000` in the browser.
+
 ## Getting Started
 
-**Access the frontend:**
-
-1. Open your browser and navigate to: http://localhost:3000. Upon starting the frontend with `npm start` it will automatically open in the browser.
-2. This application is protected with a login page. For demo purposes the sign in credentials are hard-coded to:
+1. This application is protected with a login page. For demo purposes the sign in credentials are hard-coded to:
 
     ```sh
     username: user@example.com
