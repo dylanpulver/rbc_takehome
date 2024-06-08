@@ -1,0 +1,29 @@
+
+
+pip3 install -r backend/requirements.txt
+source backend/venv/bin/activate
+uvicorn backend.main:app --reload
+
+
+cd records-app
+npm start
+
+## MongoDB Endpoint
+
+1. Set up a MongoDB server.
+2. Insert your data into the specified MongoDB database and collection.
+3. Update the MongoDB connection string and database/collection names in the `mongodb_endpoints.py` file.
+4. Uncomment the line `# app.include_router(mongodb_router)` in `main.py`.
+5. Use the `/mongodb-records` endpoint to query records from MongoDB.
+
+
+
+## SQL Server Endpoint
+
+1. Set up a SQL Server instance.
+2. Insert your data into the specified SQL Server database.
+3. Update the SQL Server connection string in the `sqlserver_endpoints.py` file.
+4. Uncomment the line `# app.include_router(sqlserver_router)` in `main.py`.
+5. Use the `/sqlserver-records` endpoint to query records from SQL Server.
+
+
