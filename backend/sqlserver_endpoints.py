@@ -25,6 +25,7 @@ sql_cursor = sql_conn.cursor()
 SECRET_KEY = os.getenv("SECRET_KEY", "defaultsecretkey")
 ALGORITHM = "HS256"
 
+
 @router.get("/sqlserver-records")
 def get_sqlserver_records(
     start_date: int = Query(..., description="Start date in epoch format"),
@@ -33,7 +34,7 @@ def get_sqlserver_records(
     voicemail: Optional[str] = Query(None, description="Voicemail"),
     user_id: Optional[str] = Query(None, description="User ID"),
     cluster: Optional[str] = Query(None, description="Cluster ID"),
-    token: str = Depends(oauth2_scheme)
+    token: str = Depends(oauth2_scheme),
 ) -> List[Any]:
     """
     Retrieve records from SQL Server based on the provided query parameters.
@@ -78,6 +79,7 @@ def get_sqlserver_records(
     sql_cursor.execute(query, params)
     records = sql_cursor.fetchall()
     return records
+
 
 # Uncomment the line below to include the router when needed
 # app.include_router(router)

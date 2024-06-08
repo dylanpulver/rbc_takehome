@@ -27,6 +27,7 @@ app = FastAPI()
 limiter = Limiter(key_func=get_remote_address)
 app.state.limiter = limiter
 
+
 @app.exception_handler(429)
 async def rate_limit_handler(request: Request, exc: RateLimitExceeded) -> JSONResponse:
     """
@@ -40,6 +41,7 @@ async def rate_limit_handler(request: Request, exc: RateLimitExceeded) -> JSONRe
         status_code=429,
         content={"detail": "Rate limit exceeded"},
     )
+
 
 # Add middleware for logging audit logs
 app.add_middleware(AuditLogMiddleware)

@@ -17,6 +17,7 @@ logger = logging.getLogger(__name__)
 with open("backend/data.json", "r") as f:
     data = json.load(f)
 
+
 @router.get("/records")
 def get_records(
     start_date: int = Query(..., description="Start date in epoch format"),
@@ -25,8 +26,8 @@ def get_records(
     voicemail: Optional[str] = Query(None, description="Voicemail"),
     user_id: Optional[str] = Query(None, description="User ID"),
     cluster: Optional[str] = Query(None, description="Cluster ID"),
-    token: str = Depends(oauth2_scheme)
-)-> List[dict]:
+    token: str = Depends(oauth2_scheme),
+) -> List[dict]:
     """
     Retrieve records based on the given parameters.
 
@@ -66,12 +67,17 @@ def get_records(
 
     if not filtered_data:
         logger.warning("No records found for the given parameters")
-        raise HTTPException(status_code=404, detail="No records found for the given parameters")
+        raise HTTPException(
+            status_code=404, detail="No records found for the given parameters"
+        )
 
     return filtered_data
 
+
 @router.get("/audit-logs")
-def get_audit_logs(skip: int = 0, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+def get_audit_logs(
+    skip: int = 0, db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
+):
     """
     Retrieve audit logs with optional pagination.
 

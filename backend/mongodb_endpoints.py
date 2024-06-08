@@ -19,6 +19,7 @@ mongo_collection = mongo_db["your_collection_name"]
 SECRET_KEY = os.getenv("SECRET_KEY", "defaultsecretkey")
 ALGORITHM = "HS256"
 
+
 @router.get("/mongodb-records")
 def get_mongodb_records(
     start_date: int = Query(..., description="Start date in epoch format"),
@@ -27,7 +28,7 @@ def get_mongodb_records(
     voicemail: Optional[str] = Query(None, description="Voicemail"),
     user_id: Optional[str] = Query(None, description="User ID"),
     cluster: Optional[str] = Query(None, description="Cluster ID"),
-    token: str = Depends(oauth2_scheme)
+    token: str = Depends(oauth2_scheme),
 ) -> List[dict]:
     """
     Retrieve records from MongoDB based on the provided query parameters.
@@ -65,6 +66,7 @@ def get_mongodb_records(
     # Retrieve records from MongoDB
     records = list(mongo_collection.find(query))
     return records
+
 
 # Uncomment the line below to include the router when needed
 # app.include_router(router)

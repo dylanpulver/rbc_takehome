@@ -12,6 +12,7 @@ DATABASE_URL: str = "sqlite:///./backend/test.db"
 # Base class for declarative class definitions
 Base = declarative_base()
 
+
 class AuditLog(Base):
     """
     Database model for storing audit logs.
@@ -25,6 +26,7 @@ class AuditLog(Base):
         client_ip (str): Client IP address.
         user_agent (str): User agent string from the client.
     """
+
     __tablename__ = "audit_logs"
     id = Column(Integer, primary_key=True, index=True)
     path = Column(String, index=True)
@@ -43,6 +45,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 # Create all tables in the database
 Base.metadata.create_all(bind=engine)
+
 
 def get_db() -> Generator[Session, None, None]:
     """

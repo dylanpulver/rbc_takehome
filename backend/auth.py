@@ -29,10 +29,13 @@ fake_users_db = {
     }
 }
 
+
 class User(BaseModel):
     """Model for user credentials."""
+
     username: str
     password: str
+
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     """
@@ -46,6 +49,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
         bool: True if the password matches, False otherwise.
     """
     return pwd_context.verify(plain_password, hashed_password)
+
 
 @router.post("/token")
 async def login(form_data: OAuth2PasswordRequestForm = Depends()) -> dict:
@@ -67,6 +71,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()) -> dict:
 
     token = jwt.encode({"sub": user["username"]}, SECRET_KEY, algorithm=ALGORITHM)
     return {"access_token": token, "token_type": "bearer"}
+
 
 @router.get("/validate-token")
 async def validate_token(token: str = Depends(oauth2_scheme)) -> dict:

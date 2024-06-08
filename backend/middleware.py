@@ -26,7 +26,7 @@ class AuditLogMiddleware(BaseHTTPMiddleware):
             method=request.method,
             status_code=response.status_code,
             client_ip=request.client.host,
-            user_agent=request.headers.get('user-agent', 'unknown')
+            user_agent=request.headers.get("user-agent", "unknown"),
         )
 
         # Save the audit log entry to the database

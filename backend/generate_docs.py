@@ -38,6 +38,7 @@ def generate_random_documents(num_docs: int) -> List[Dict[str, any]]:
         documents.append(doc)
     return documents
 
+
 # Generate 10_000 random documents
 documents = generate_random_documents(10_000)
 

@@ -1,7 +1,9 @@
 from typing import Any, Dict, List
 
 
-def filter_by_date_range(records: List[Dict[str, Any]], start_date: int, end_date: int) -> List[Dict[str, Any]]:
+def filter_by_date_range(
+    records: List[Dict[str, Any]], start_date: int, end_date: int
+) -> List[Dict[str, Any]]:
     """
     Filter records by date range.
 
@@ -16,7 +18,10 @@ def filter_by_date_range(records: List[Dict[str, Any]], start_date: int, end_dat
         if start_date <= record["originationTime"] <= end_date
     ]
 
-def filter_by_nested_field(records: List[Dict[str, Any]], field: str, value: str) -> List[Dict[str, Any]]:
+
+def filter_by_nested_field(
+    records: List[Dict[str, Any]], field: str, value: str
+) -> List[Dict[str, Any]]:
     """
     Filter records by a nested field within the 'devices' dictionary.
 
@@ -27,7 +32,10 @@ def filter_by_nested_field(records: List[Dict[str, Any]], field: str, value: str
     """
     return [record for record in records if record["devices"].get(field) == value]
 
-def filter_by_field(records: List[Dict[str, Any]], field: str, value: str) -> List[Dict[str, Any]]:
+
+def filter_by_field(
+    records: List[Dict[str, Any]], field: str, value: str
+) -> List[Dict[str, Any]]:
     """
     Filter records by a top-level field.
 
