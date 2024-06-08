@@ -73,6 +73,7 @@ function App() {
         },
       });
       setRecords(response.data);
+      setPage(0); // Reset to the first page
     } catch (err) {
       if (err.response && err.response.status === 401) {
         setToken(null); // If unauthorized, reset the token
